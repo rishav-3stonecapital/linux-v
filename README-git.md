@@ -1,3 +1,24 @@
+## Keeping your branch up to date with newer tags
+
+If you started your branch from an older tag (e.g., v6.17) and want to include changes from a newer tag (e.g., v6.20), you have two main options:
+
+### Option 1: Merge the newer tag into your branch
+```
+git checkout my-feature
+git merge v6.20
+```
+This keeps your branch history and adds a merge commit.
+
+### Option 2: Rebase your branch onto the newer tag
+```
+git checkout my-feature
+git rebase v6.20
+```
+This rewrites your branch history as if your changes were made on top of v6.20.
+
+**Note:** If there are conflicts, Git will prompt you to resolve them during merge or rebase.
+
+---
 # Git Commands Cheat Sheet for linux-v
 
 ## 1. Clone your fork
