@@ -2115,13 +2115,13 @@ static int ep_poll(struct eventpoll *ep, struct epoll_event __user *events,
 		// let ep_busy_loop run once
 		eavail = ep_busy_loop(ep);
 
-		// If the timeout has occurred, return 0 (no events).
-		if (timed_out)
-			return 0;
-
 		if (eavail)
 			continue; // If events are now available, restart the loop to deliver them.
 
+		// If the timeout has occurred, return 0 (no events).
+		if (timed_out)
+			return 0;
+			
 		// If a signal is pending for the current process, return -EINTR (interrupted system call).
 		if (signal_pending(current))
 			return -EINTR;
